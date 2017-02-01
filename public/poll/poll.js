@@ -8,15 +8,17 @@
 $(document).ready(function() {
   const pollId = getParameterByName('pollId')
 
-  console.log(pollId);
   getPollData(pollId)
-
 });
 
 
 const getPollData = (pollId) => {
   $.get(`/api/poll/${pollId}`, function(data) {
-    console.log(data);
+    $('.poll-question').append(data.info.poll.question)
+    $('.poll-option-1').append(data.info.poll.options[0].option)
+    $('.poll-option-2').append(data.info.poll.options[1].option)
+    $('.poll-option-3').append(data.info.poll.options[2].option)
+    $('.poll-option-4').append(data.info.poll.options[3].option)
   });
 
   // console.log(pollId);
