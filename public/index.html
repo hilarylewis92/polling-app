@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>Polling Form</title>
+
+    <meta charset="utf-8">
+
     <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
 
-    <!-- <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/style.css">
-    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/reset.css"> -->
-    <link href="https://fonts.googleapis.com/css?family=Arsenal|Lato|Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Source+Sans+Pro" rel="stylesheet">
 
   </head>
-  <body>
+  <body class='form-page'>
     <h1 class='create-poll'>
-      Create Poll
+      Create a Poll:
     </h1>
 
-    <form>
-      <input class='create-poll-question' placeholder='write poll question...' />
-
-      <input class='create-poll-option-one' placeholder='option 1' />
-      <input class='create-poll-option-two' placeholder='option 2' />
-      <input class='create-poll-option-three' placeholder='option 3' />
-      <input class='create-poll-option-four' placeholder='option 4' />
-
+    <form class='form'>
+      <label
+        class'create-poll-question-label'>
+        Add a Question:
+        <br />
+        <input class='create-poll-question' placeholder="What's your favorite color?" />
+      </label>
+      <br />
+      <label
+        class='create-poll-options-label'>
+        Your audience can select from these options:
+        <br />
+        <input class='create-poll-option-one option-input' placeholder='option 1' />
+        <input class='create-poll-option-two option-input' placeholder='option 2' />
+        <br />
+        <input class='create-poll-option-three option-input' placeholder='option 3' />
+        <input class='create-poll-option-four option-input' placeholder='option 4' />
+      </label>
+      <br />
       <input class='create-poll-btn' type='submit' value='Create Poll' />
     </form>
 

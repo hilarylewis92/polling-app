@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Auth0-jQuery</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="//cdn.auth0.com/js/lock/10.3.0/lock.min.js"></script>
+    <script src="auth0-variables.js"></script>
+    <script src="app.js"></script>
+
+    <!-- styles -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Arsenal|Lato|Open+Sans" rel="stylesheet">
+
+  </head>
+  <body class='poll-page'>
+    <img
+      alt="avatar"
+      class="avatar"
+      style="display:none;">
+
+    <p class="welcome">Welcome
+      <span class="nickname"></span>
+    </p>
+
+    <input
+      class="btn-login"
+      type='submit'
+      value='Sign In' />
+
+    <input
+      class="btn-logout"
+      type='submit'
+      value='Sign Out'
+      style="display:none;"/>
+
+    <script src="poll.js"></script>
+  </body>
+</html>
