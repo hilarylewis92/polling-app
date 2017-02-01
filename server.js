@@ -2,6 +2,7 @@ const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const md5 = require('md5')
 
 const app = express();
 app.use(bodyParser.json());
@@ -26,8 +27,13 @@ app.use('/form', express.static(path.join(__dirname, 'public')));
 // });
 
 app.post('/form', (req, res) => {
-  // const poll = req
-  console.log(req.body);
+  const poll = req.body
+  const id = md5(poll)
+  app.locals.poll[id] = poll
+
+  res.json({ id, poll })
+
+  console.log(app.locals.poll);
 })
 
 const port = process.env.PORT || 3000;
