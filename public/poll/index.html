@@ -10,7 +10,6 @@
     <script src="auth0-variables.js"></script>
     <script src="app.js"></script>
 
-    <!-- styles -->
     <link rel="stylesheet" type="text/css" href="./style.css">
     <link rel="stylesheet" type="text/css" href="./reset.css">
     <link href="https://fonts.googleapis.com/css?family=Arsenal|Lato|Open+Sans" rel="stylesheet">
@@ -37,12 +36,14 @@
       value='Sign Out'
       style="display:none;"/>
 
-    <div class='poll-question'></div>
-    <button class='poll-option-1'></button>
-    <button class='poll-option-2'></button>
-    <button class='poll-option-3'></button>
-    <button class='poll-option-4'></button>
-
+    <section class='poll' style="display:none;">
+      <div class='poll-question'></div>
+      <span class='poll-option-1'></span>
+      <span class='poll-option-2'></span>
+      </br>
+      <span class='poll-option-3'></span>
+      <span class='poll-option-4'></span>
+    </section>
 
     <script src="./poll.js"></script>
   </body>

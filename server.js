@@ -14,10 +14,6 @@ app.use('/poll', express.static(path.join(__dirname, 'public/poll')));
 
 app.use('/form', express.static(path.join(__dirname, 'public')));
 
-// app.get('/form', (req, res) => {
-//   res.sendFile(__dirname + '/public/index.html')
-// });
-
 app.post('/form', (req, res) => {
   const info = req.body
   const id = md5(info)

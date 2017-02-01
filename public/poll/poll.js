@@ -1,45 +1,10 @@
-// right away, search url for query params
-// determine if there is a query param called pollId
-// if so, store that value in a variable
-// then do a get request to the server for that poll
-// $.get(`/api/poll/${pollId}`)
-// append that returned data to the dom
+// ?pollId=3449c9e5e332f1dbb81505cd739fbf3f
 
 $(document).ready(function() {
   const pollId = getParameterByName('pollId')
 
   getPollData(pollId)
 });
-
-
-const getPollData = (pollId) => {
-  $.get(`/api/poll/${pollId}`, function(data) {
-    $('.poll-question').append(data.info.poll.question)
-    $('.poll-option-1').append(data.info.poll.options[0].option)
-    $('.poll-option-2').append(data.info.poll.options[1].option)
-    $('.poll-option-3').append(data.info.poll.options[2].option)
-    $('.poll-option-4').append(data.info.poll.options[3].option)
-  });
-
-  // console.log(pollId);
-  // return fetch(`/api/poll/${pollID}`)
-  //   .then( res => {
-  //     console.log(res);
-  //     return res.json();
-  // })
-  // debugger;
-
-  // $.get(`/api/poll/${pollId}`, {
-  //   console.log(res);
-  //   // .then( res => {
-  //   //   console.log(res);
-  //   //   return res.json();
-  //   // })
-  // }
-    // console.log(pollId);
-  // );
-}
-
 
 function getParameterByName(name, url) {
   if (!url) {
@@ -53,19 +18,12 @@ function getParameterByName(name, url) {
   return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-
-// const getPoll = (pollID) => {
-//   debugger;
-//   return fetch(`/api/poll/${pollID}`)
-//     .then( res => {
-//       return res.json();
-//     })
-// }
-// window.location.href.substr(window.location.href.lastIndexOf('/') + 1)
-
-// $.get('/api/poll/:id', function(data) {
-//
-//   // console.log(data.info);
-//   // let question = data.info.poll.question
-//   // $('.poll-question').append('<h2>question<h2>')
-// })
+function getPollData(pollId) {
+  $.get(`/api/poll/${pollId}`, function(data) {
+    $('.poll-question').append(`<h3>${data.info.poll.question}</h3>`)
+    $('.poll-option-1').append(`<input type='submit' value='${data.info.poll.options[0].option}'/>`)
+    $('.poll-option-2').append(`<input type='submit' value='${data.info.poll.options[1].option}'/>`)
+    $('.poll-option-3').append(`<input type='submit' value='${data.info.poll.options[2].option}'/>`)
+    $('.poll-option-4').append(`<input type='submit' value='${data.info.poll.options[3].option}'/>`)
+  });
+}
