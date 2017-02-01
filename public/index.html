@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Auth0-jQuery</title>
     <meta charset="utf-8">
-
-    <!-- jquery -->
+    <title>Polling Form</title>
     <script src="//code.jquery.com/jquery-3.1.0.min.js"></script>
 
-    <!-- Auth0 lock script -->
-    <script src="//cdn.auth0.com/js/lock/10.3.0/lock.min.js"></script>
-
-    <script src="auth0-variables.js"></script>
-    <script src="app.js"></script>
-
-    <!-- styles -->
-    <link rel="stylesheet" type="text/css" href="/style.css">
-    <link rel="stylesheet" type="text/css" href="/reset.css">
+    <!-- <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/style.css">
+    <link rel="stylesheet" type="text/css" href="%PUBLIC_URL%/reset.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Arsenal|Lato|Open+Sans" rel="stylesheet">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <img alt="avatar" class="avatar" style="display:none;">
-    <p>Welcome <span class="nickname"></span></p>
-    <button type="submit" class="btn-login">Sign In</button>
-    <button type="submit" class="btn-logout" style="display:none;">Sign Out</button>
+    <h1 class='create-poll'>
+      Create Poll
+    </h1>
+
+    <form>
+      <input class='create-poll-question' placeholder='write poll question...' />
+
+      <input class='create-poll-option-one' placeholder='option 1' />
+      <input class='create-poll-option-two' placeholder='option 2' />
+      <input class='create-poll-option-three' placeholder='option 3' />
+      <input class='create-poll-option-four' placeholder='option 4' />
+
+      <input class='create-poll-btn' type='submit' value='Create Poll' />
+    </form>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="form.js"></script>
   </body>
 </html>

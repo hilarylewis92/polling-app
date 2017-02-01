@@ -1,17 +1,35 @@
 const http = require('http');
 const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
+const md5 = require('md5')
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(express.static('public'));
+
+app.locals.poll = {}
+
+app.use('/', express.static(path.join(__dirname, 'public/auth')));
+
+app.use('/form', express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/public/index.html');
+  res.json(app.locals.poll)
+  console.log('get', app.locals.poll);
 });
 
-app.get('/api/form', (req, res) => {
-  res.sendFile(__dirname + '/public/form.html');
-});
+app.post('/', (req, res) => {
+  const poll = req.body
+  const id = md5(poll)
+
+  app.locals.poll[id] = poll
+
+  res.json({ id, poll })
+
+  console.log('post', app.locals.poll);
+})
 
 const port = process.env.PORT || 3000;
 
