@@ -24,15 +24,11 @@ app.use('/form', express.static(path.join(__dirname, 'public')));
 
 app.post('/form', (req, res) => {
   const info = req.body
-  console.log('info', info);
   const id = md5(info)
   const poll = { id, info}
 
   app.locals.polls.push(poll)
-  // res.redirect(`/poll/${id}`)
-  // res.json({ id, poll })
-
-  console.log('here is local polls', app.locals.polls);
+  res.redirect(`/api/poll/${id}`)
 })
 
 // app.get('/poll/:id', (req, res) => {
@@ -40,9 +36,14 @@ app.post('/form', (req, res) => {
 // });
 
 
-// app.get('/api/poll/:id', (req, res) => {
-//   res.json(app.locals.polls.find(poll === req.params.id)
-// });
+app.get('/api/poll/:id', (req, res) => {
+  console.log(req.params.id);
+  var data = app.locals.polls.find((poll) => {
+    return poll.id === req.params.id
+  })
+
+  res.json(data)
+});
 
 
 const port = process.env.PORT || 3000;

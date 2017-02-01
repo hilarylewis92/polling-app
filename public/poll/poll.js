@@ -11,3 +11,9 @@
 //     console.error(err);
 //   })
 // })
+
+  $.get('/api/post/:id', function(data) => {
+    console.log(data);
+  })
+//     .then((res) => console.log('response', res))
+// })
