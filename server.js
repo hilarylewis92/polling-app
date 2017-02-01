@@ -8,27 +8,31 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.locals.polls = []
 
-app.locals.poll = {}
-
-app.use('/', express.static(path.join(__dirname, 'public/poll')));
+app.use('/poll', express.static(path.join(__dirname, 'public/poll')));
 
 app.use('/form', express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-  res.json(app.locals.poll)
-  console.log('get', app.locals.poll);
-});
+// app.get('/form', (req, res) => {
+//   res.sendFile(__dirname + '/public/index.html')
+// });
 
-app.post('/', (req, res) => {
-  const poll = req.body
-  const id = md5(poll)
+app.post('/form', (req, res) => {
+  const info = req.body
+  const id = md5(info)
+  const poll = { id, info}
 
-  app.locals.poll[id] = poll
+  app.locals.polls.push(poll)
+  res.redirect(`/api/poll/${id}`)
+})
 
-  res.json({ id, poll })
-
-  console.log('post', app.locals.poll);
+app.get('/api/poll/:id', (req, res) => {
+  console.log(req.params.id);
+  var data = app.locals.polls.find((poll) => {
+    return poll.id === req.params.id
+  })
+  res.json(data)
 })
 
 const port = process.env.PORT || 3000;

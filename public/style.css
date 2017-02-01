@@ -1,5 +1,4 @@
 /*#D7FBE8 #9DF3C4 #62D2A2 #1FAB89*/
-
 * {
   font-family: 'Roboto Condensed', sans-serif;
   color: #1FAB89;
@@ -38,7 +37,7 @@ input {
 }
 
 .option-input {
-  width: 40%;
+  width: 42%;
 }
 
 .create-poll-btn:hover {
