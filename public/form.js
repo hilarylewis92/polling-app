@@ -23,17 +23,22 @@ $('.create-poll-btn').on('click', (e) => {
     ]
   }
 
-  fetch(`/form`, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: 'post',
-    body: JSON.stringify({
-      poll: createPoll
-    })
-  })
-  .catch((err) => {
-     console.error(err);
+  $.post('/form', {
+    'poll': createPoll
   })
 })
+
+
+// fetch(`/form`, {
+//   headers: {
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json'
+//   },
+//   method: 'post',
+//   body: JSON.stringify({
+//     poll: createPoll
+//   })
+// })
+// .catch((err) => {
+//    console.error(err);
+// })

@@ -24,6 +24,7 @@ app.use('/form', express.static(path.join(__dirname, 'public')));
 
 app.post('/form', (req, res) => {
   const info = req.body
+  console.log('info', info);
   const id = md5(info)
   const poll = { id, info}
 
