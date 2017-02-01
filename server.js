@@ -14,10 +14,6 @@ app.use('/poll', express.static(path.join(__dirname, 'public/poll')));
 
 app.use('/form', express.static(path.join(__dirname, 'public')));
 
-// app.get('/', (req, res) => {
-//   res.json(app.locals.poll)
-// });
-//
 // app.get('/form', (req, res) => {
 //   res.sendFile(__dirname + '/public/index.html')
 // });
@@ -31,11 +27,6 @@ app.post('/form', (req, res) => {
   res.redirect(`/api/poll/${id}`)
 })
 
-// app.get('/poll/:id', (req, res) => {
-//   res.sendFile()
-// });
-
-
 app.get('/api/poll/:id', (req, res) => {
   console.log(req.params.id);
   var data = app.locals.polls.find((poll) => {
@@ -43,8 +34,7 @@ app.get('/api/poll/:id', (req, res) => {
   })
 
   res.json(data)
-});
-
+})
 
 const port = process.env.PORT || 3000;
 
