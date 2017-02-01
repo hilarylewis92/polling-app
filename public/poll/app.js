@@ -51,7 +51,7 @@ $(document).ready(function() {
 
   var logout = function() {
     localStorage.removeItem('id_token');
-    window.location.href = "/";
+    window.location.href = "/poll";
   };
 
   retrieve_profile();
