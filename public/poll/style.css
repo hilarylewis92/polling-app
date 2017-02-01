@@ -1,3 +1,45 @@
-.btn-login {
+/*#D7FBE8 #9DF3C4 #62D2A2 #1FAB89*/
+
+* {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #1FAB89;
+}
+
+.poll-page {
+  margin: 20px;
+}
+
+input {
+  background-color: #D7FBE8;
+  padding: 10px;
+  font-size: 15px;
+  margin: 10px;
   border: none;
+}
+
+input:hover {
+  cursor: pointer;
+  background-color: #62D2A2;
+  color: #D7FBE8;
+}
+
+img {
+  height: 40px;
+  border-radius: 100%;
+}
+
+.avatar {
+  display: inline-block;
+}
+
+.welcome {
+  text-align: center;
+  display: inline-block;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 15px;
+  margin-left: 10px;
+}
+
+.btn-logout {
+  float: right;
 }
