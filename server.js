@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.locals.poll = {}
 
-app.use('/', express.static(path.join(__dirname, 'public/auth')));
+app.use('/', express.static(path.join(__dirname, 'public/poll')));
 
 app.use('/form', express.static(path.join(__dirname, 'public')));
 
