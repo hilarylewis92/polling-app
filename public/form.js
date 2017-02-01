@@ -1,10 +1,38 @@
 $('.create-poll-btn').on('click', (e) => {
   e.preventDefault()
 
-  axios.post('/form', {
-    poll: 'hello'
-  })
-})
+  // axios.post('/form', {
+  //   data: {poll:'hello'}
+  // })
+
+  const question = $('.create-poll-question').val();
+  const optionOne = $('.create-poll-option-one').val();
+  const optionTwo = $('.create-poll-option-two').val();
+  const optionThree = $('.create-poll-option-three').val();
+  const optionFour = $('.create-poll-option-three').val();
+
+  $.ajax({
+    url: '/form',
+    type: 'post',
+    data: {
+      question: question,
+      optionOne: optionOne,
+      optionTwo: optionTwo,
+      optionThree: optionThree,
+      optionFour: optionFour
+    }
+  });
+});
+
+//   axios({
+//   method: 'post',
+//   url: '/form',
+//   data: {
+//     firstName: 'Fred',
+//     lastName: 'Flintstone'
+//   }
+// });
+// })
 
   //   const createPoll = {
   //     id: 1,
