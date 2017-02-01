@@ -1,0 +1,29 @@
+{
+  "name": "polling-app",
+  "version": "1.0.0",
+  "description": "Real time polling app",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hilarylewis92/polling-app.git"
+  },
+  "author": "Hilary Lewis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hilarylewis92/polling-app/issues"
+  },
+  "homepage": "https://github.com/hilarylewis92/polling-app#readme",
+  "dependencies": {
+    "express": "^4.14.1",
+    "lodash": "^4.17.4",
+    "socket.io": "^1.7.2"
+  },
+  "devDependencies": {
+    "express": "^4.14.1",
+    "http": "0.0.0"
+  }
+}
