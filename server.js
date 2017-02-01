@@ -32,7 +32,6 @@ app.get('/api/poll/:id', (req, res) => {
   var data = app.locals.polls.find((poll) => {
     return poll.id === req.params.id
   })
-
   res.json(data)
 })
 

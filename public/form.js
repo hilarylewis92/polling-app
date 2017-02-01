@@ -27,18 +27,3 @@ $('.create-poll-btn').on('click', (e) => {
     'poll': createPoll
   })
 })
-
-
-// fetch(`/form`, {
-//   headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json'
-//   },
-//   method: 'post',
-//   body: JSON.stringify({
-//     poll: createPoll
-//   })
-// })
-// .catch((err) => {
-//    console.error(err);
-// })
