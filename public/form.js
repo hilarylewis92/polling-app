@@ -2,7 +2,6 @@ $('.create-poll-btn').on('click', (e) => {
   e.preventDefault()
 
     const createPoll = {
-      id: 1,
       question: $('.create-poll-question').val(),
       options: [
         {
@@ -24,7 +23,7 @@ $('.create-poll-btn').on('click', (e) => {
       ]
     }
 
-    fetch(`/form`, {
+    fetch(`/`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -38,36 +37,3 @@ $('.create-poll-btn').on('click', (e) => {
        console.error(err);
     })
   })
-
-
-  // axios.post('/form', {
-  //   data: {poll:'hello'}
-  // })
-
-
-// const question = $('.create-poll-question').val();
-// const optionOne = $('.create-poll-option-one').val();
-// const optionTwo = $('.create-poll-option-two').val();
-// const optionThree = $('.create-poll-option-three').val();
-// const optionFour = $('.create-poll-option-three').val();
-
-// axios({
-//   url: '/form',
-//   method: 'post',
-//   data: {
-//     question: question,
-//     optionOne: optionOne,
-//     optionTwo: optionTwo,
-//     optionThree: optionThree,
-//     optionFour: optionFour
-//   }
-// });
-//   axios({
-//   method: 'post',
-//   url: '/form',
-//   data: {
-//     firstName: 'Fred',
-//     lastName: 'Flintstone'
-//   }
-// });
-// })

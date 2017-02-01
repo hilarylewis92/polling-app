@@ -13,27 +13,22 @@ app.locals.poll = {}
 
 app.use('/', express.static(path.join(__dirname, 'public/auth')));
 
-// app.use(express.static('public'));
-
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/public/index.html');
-// });
-
 app.use('/form', express.static(path.join(__dirname, 'public')));
 
-// app.get('/form', (req, res) => {
-//   // res.json(app.locals.poll)
-//   res.sendFile(__dirname + 'public');
-// });
+app.get('/', (req, res) => {
+  res.json(app.locals.poll)
+  console.log('get', app.locals.poll);
+});
 
-app.post('/form', (req, res) => {
+app.post('/', (req, res) => {
   const poll = req.body
   const id = md5(poll)
+
   app.locals.poll[id] = poll
 
   res.json({ id, poll })
 
-  console.log(app.locals.poll);
+  console.log('post', app.locals.poll);
 })
 
 const port = process.env.PORT || 3000;
