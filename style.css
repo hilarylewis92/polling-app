@@ -1,0 +1,48 @@
+/*#D7FBE8 #9DF3C4 #62D2A2 #1FAB89*/
+
+* {
+  font-family: 'Roboto Condensed', sans-serif;
+  color: #1FAB89;
+}
+
+.form-page {
+  margin: 100px 0px;
+}
+
+.create-poll {
+  text-align: center;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.form {
+  background-color: #9DF3C4;
+  font-family: 'Roboto Condensed', sans-serif;
+  border: 1px solid #1FAB89;
+  padding: 20px;
+  width: 80%;
+  margin: auto;
+}
+
+input {
+  background-color: #D7FBE8;
+  padding: 10px;
+  font-size: 20px;
+  margin: 10px;
+  border: none;
+}
+
+.create-poll-question {
+  width: 90%;
+}
+
+.option-input {
+  width: 40%;
+}
+
+.create-poll-btn:hover {
+  cursor: pointer;
+  background-color: #62D2A2;
+  color: #D7FBE8;
+}
