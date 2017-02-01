@@ -3,15 +3,22 @@ const express = require('express');
 
 const app = express();
 
+app.locals.poll = {}
+
 app.use(express.static('public'));
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-app.get('/api/form', (req, res) => {
+app.get('/form', (req, res) => {
   res.sendFile(__dirname + '/public/form.html');
 });
+
+app.post('/form', (req, res) => {
+  // const poll = req
+  console.log(req);
+})
 
 const port = process.env.PORT || 3000;
 
