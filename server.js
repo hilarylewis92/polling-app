@@ -18,12 +18,12 @@ app.use('/', express.static(path.join(__dirname, 'public/auth')));
 //   res.sendFile(__dirname + '/public/index.html');
 // });
 
-app.use('/form', express.static(path.join(__dirname, 'public.form.html')));
+app.use('/form', express.static(path.join(__dirname, 'public')));
 
-app.get('/form', (req, res) => {
-  res.json(app.locals.poll)
-  // res.sendFile(__dirname + '/public/form.html');
-});
+// app.get('/form', (req, res) => {
+//   // res.json(app.locals.poll)
+//   res.sendFile(__dirname + 'public');
+// });
 
 app.post('/form', (req, res) => {
   // const poll = req
