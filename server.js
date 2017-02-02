@@ -42,6 +42,7 @@ module.exports = server;
 
 const socketIo = require('socket.io');
 const io = socketIo(server);
+const votes = {};
 
 io.on('connection', (socket) => {
   console.log('A user has connected.', io.engine.clientsCount);
@@ -50,8 +51,18 @@ io.on('connection', (socket) => {
 
   socket.emit('statusMessage', 'You have connected.');
 
-  socket.on('disconnect', () => {
-    console.log('A user has disconnected.', io.engine.clientsCount);
-    io.sockets.emit('userConnection', io.engine.clientsCount);
+  socket.on('message', (channel, message) => {
+    if (channel === 'voteCast') {
+      votes[socket.id] = message;
+      console.log(votes);
+    }
   });
+
+    socket.on('disconnect', () => {
+    console.log('A user has disconnected.', io.engine.clientsCount);
+    delete votes[socket.id];
+    console.log(votes);
+    io.sockets.emit('usersConnected', io.engine.clientsCount);
+  });
+
 });
