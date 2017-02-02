@@ -1,3 +1,5 @@
+const socket = io();
+
 $(document).ready(function() {
   const pollId = getParameterByName('pollId')
 
