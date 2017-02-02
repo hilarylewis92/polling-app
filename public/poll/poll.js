@@ -1,5 +1,3 @@
-// ?pollId=3449c9e5e332f1dbb81505cd739fbf3f
-
 $(document).ready(function() {
   const pollId = getParameterByName('pollId')
 
