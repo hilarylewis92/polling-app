@@ -38,13 +38,21 @@
 
     <section class='poll' style="display:none;">
       <div class='poll-question'></div>
-      <span class='poll-option-1'></span>
-      <span class='poll-option-2'></span>
-      </br>
-      <span class='poll-option-3'></span>
-      <span class='poll-option-4'></span>
+
+      <div id="choices">
+        <button class='option-1'></button>
+        <button class='option-2'></button>
+        <button class='option-3'></button>
+        <button class='option-4'></button>
+      </div>
+
+      <div id="connection-count"></div>
+      <div id="status-message"></div>
+      <div id="vote-message"></div>
+
     </section>
 
+    <script src="/socket.io/socket.io.js"></script>
     <script src="./poll.js"></script>
   </body>
 </html>

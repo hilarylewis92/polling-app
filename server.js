@@ -24,7 +24,6 @@ app.post('/form', (req, res) => {
 })
 
 app.get('/api/poll/:id', (req, res) => {
-  console.log(req.params.id);
   var data = app.locals.polls.find((poll) => {
     return poll.id === req.params.id
   })
@@ -39,3 +38,51 @@ server.listen(port, () => {
 });
 
 module.exports = server;
+
+const socketIo = require('socket.io');
+const io = socketIo(server);
+const votes = {};
+
+io.on('connection', (socket) => {
+  console.log('A user has connected.', io.engine.clientsCount);
+
+  io.sockets.emit('usersConnected', io.engine.clientsCount);
+
+  socket.emit('statusMessage', 'You have connected.');
+
+  socket.on('message', (channel, message) => {
+    if (channel === 'voteCast') {
+      votes[socket.id] = message;
+      socket.emit('voteCount', countVotes(votes));
+    }
+  });
+
+    socket.on('disconnect', () => {
+      console.log('A user has disconnected.', io.engine.clientsCount);
+      delete votes[socket.id];
+      socket.emit('voteCount', countVotes(votes));
+      io.sockets.emit('usersConnected', io.engine.clientsCount);
+  });
+});
+
+const countVotes = (votes) => {
+  let arr = []
+  for (key in votes) {
+    if(votes.hasOwnProperty(key)) {
+      var value = votes[key]
+      arr.push(value)
+    }
+  }
+
+  let voteCount = arr.reduce((allVotes, vote) => {
+  	if(vote in allVotes) {
+  		allVotes[vote]++
+      }
+  	else {
+  		allVotes[vote] = 1
+      }
+  	return allVotes
+  },{})
+
+  return voteCount
+}
