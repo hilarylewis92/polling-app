@@ -54,15 +54,29 @@ io.on('connection', (socket) => {
   socket.on('message', (channel, message) => {
     if (channel === 'voteCast') {
       votes[socket.id] = message;
-      console.log(votes);
+      socket.emit('voteCount', countVotes(votes));
     }
   });
 
     socket.on('disconnect', () => {
-    console.log('A user has disconnected.', io.engine.clientsCount);
-    delete votes[socket.id];
-    console.log(votes);
-    io.sockets.emit('usersConnected', io.engine.clientsCount);
+      console.log('A user has disconnected.', io.engine.clientsCount);
+      delete votes[socket.id];
+      socket.emit('voteCount', countVotes(votes));
+      io.sockets.emit('usersConnected', io.engine.clientsCount);
   });
-
 });
+
+const countVotes = (votes) => {
+  const voteCount = {
+      A: 0,
+      B: 0,
+      C: 0,
+      D: 0
+  };
+
+  for (let vote in votes) {
+    voteCount[votes[vote]]++
+  }
+
+  return voteCount;
+}
