@@ -67,16 +67,13 @@ io.on('connection', (socket) => {
 });
 
 const countVotes = (votes) => {
-  const voteCount = {
-      A: 0,
-      B: 0,
-      C: 0,
-      D: 0
-  };
 
-  for (let vote in votes) {
-    voteCount[votes[vote]]++
-  }
+  const voteCount = Object.assign({}, votes)
+  console.log(voteCount, 'voteCount');
 
-  return voteCount;
+  // for (let vote in votes) {
+  //   voteCount[votes[vote]]++
+  // }
+
+  // return voteCount;
 }
