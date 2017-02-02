@@ -23,10 +23,6 @@ $('.create-poll-btn').on('click', (e) => {
     ]
   }
 
-  // $.post('/form', {
-  //   'poll': createPoll
-  // })
-
   fetch(`/form`, {
     method: 'post',
     headers: {
@@ -39,7 +35,6 @@ $('.create-poll-btn').on('click', (e) => {
   }).then(res => {
     return res.json()
   }).then(json => {
-    console.log(json);
     return window.location = `/poll/?pollId=${json.id}`
   })
 })
