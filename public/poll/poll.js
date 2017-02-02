@@ -41,10 +41,30 @@ socket.on('statusMessage', (message) => {
 });
 
 const buttons = document.querySelectorAll('#choices button');
-console.log(buttons);
 
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', function() {
     socket.send('voteCast', this.innerText);
   });
 }
+
+const voteCount = document.getElementById('vote-message');
+
+socket.on('voteCount', (votes) => {
+  let votedFor = Object.keys(votes).map(vote => {
+    return vote
+  })
+
+  let votedAmounts = []
+  for (key in votes) {
+    if(votes.hasOwnProperty(key)) {
+      var value = votes[key]
+      votedAmounts.push(value)
+    }
+  }
+
+  let votedForAmount = votedAmounts.map(amount => {
+    return amount
+  })
+  voteCount.innerText = votedFor + votedForAmount
+});
