@@ -51,10 +51,8 @@ for (let i = 0; i < buttons.length; i++) {
 const voteCount = document.getElementById('vote-message');
 
 socket.on('voteCount', (votes) => {
-  console.log('votes', votes);
-
   let votedFor = Object.keys(votes).map(vote => {
-    return votes[vote] + ' votes for' + vote
+    return vote + ':' + votes[vote]
   })
   voteCount.innerText = votedFor
 });

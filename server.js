@@ -24,7 +24,6 @@ app.post('/form', (req, res) => {
 })
 
 app.get('/api/poll/:id', (req, res) => {
-  console.log(req.params.id);
   var data = app.locals.polls.find((poll) => {
     return poll.id === req.params.id
   })
@@ -85,6 +84,5 @@ const countVotes = (votes) => {
   	return allVotes
   },{})
 
-  console.log('voteCount', voteCount);
   return voteCount
 }
