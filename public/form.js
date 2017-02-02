@@ -23,7 +23,23 @@ $('.create-poll-btn').on('click', (e) => {
     ]
   }
 
-  $.post('/form', {
-    'poll': createPoll
+  // $.post('/form', {
+  //   'poll': createPoll
+  // })
+
+  fetch(`/form`, {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      poll: createPoll
+    })
+  }).then(res => {
+    return res.json()
+  }).then(json => {
+    console.log(json);
+    return window.location = `/poll/?pollId=${json.id}`
   })
 })
