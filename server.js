@@ -67,13 +67,24 @@ io.on('connection', (socket) => {
 });
 
 const countVotes = (votes) => {
+  let arr = []
+  for (key in votes) {
+    if(votes.hasOwnProperty(key)) {
+      var value = votes[key]
+      arr.push(value)
+    }
+  }
 
-  const voteCount = Object.assign({}, votes)
-  console.log(voteCount, 'voteCount');
+  let voteCount = arr.reduce((allVotes, vote) => {
+  	if(vote in allVotes) {
+  		allVotes[vote]++
+      }
+  	else {
+  		allVotes[vote] = 1
+      }
+  	return allVotes
+  },{})
 
-  // for (let vote in votes) {
-  //   voteCount[votes[vote]]++
-  // }
-
-  // return voteCount;
+  console.log('voteCount', voteCount);
+  return voteCount
 }
