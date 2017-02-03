@@ -38,6 +38,7 @@ $(document).ready(function() {
         }
         // Display user information
         show_profile_info(profile);
+        profileData = profile;
       });
     }
   };

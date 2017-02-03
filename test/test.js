@@ -36,7 +36,7 @@ describe('GET /form', function() {
   });
   it('should display the form', function() {
     request("http://localhost:3000/", function(err, res, body) {
-      expect(html).to.have("form-page")
+      res.body.should.have.property('form-page')
       done()
     })
   });
@@ -45,7 +45,7 @@ describe('GET /form', function() {
 describe('GET api/poll/:id', function() {
   it('should return a 200 status code', function(done) {
       chai.request(server)
-      .get('/api/poll/2353')
+      .get('/api/poll/3449c9e5e332f1dbb81505cd739fbf3f')
       .end(function(err, res) {
         res.should.have.status(200);
         done()
@@ -59,17 +59,6 @@ describe('GET api/poll/:id', function() {
       done()
     })
   })
-});
-
-describe('POST /form', () => {
-  it('should return a 200 status code', function(done) {
-      chai.request(server)
-      .get('/form')
-      .end(function(err, res) {
-        res.should.have.status(200);
-        done()
-      })
-  });
 });
 
 describe('undefined routes', function(){

@@ -44,7 +44,7 @@ const buttons = document.querySelectorAll('#choices button');
 
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', function() {
-    socket.send('voteCast', this.innerText);
+    socket.send('voteCast', this.innerText, profileData);
   });
 }
 
