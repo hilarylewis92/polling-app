@@ -59,10 +59,10 @@ io.on('connection', (socket) => {
   socket.on('message', (channel, message, user, index) => {
     if (channel === 'voteCast') {
       votes[socket.id] = message;
-      socket.emit('voteCount', countVotes(votes));
+      socket.emit('voteCount', countVotes(votes, user));
 
-      assignUser(user, index-1)
-      socket.emit('voteCount', app.locals.votes);
+      // assignUser(user, index-1)
+      // socket.emit('voteCount', app.locals.votes);
     }
   });
 
@@ -86,7 +86,10 @@ io.on('connection', (socket) => {
   });
 });
 
-const countVotes = (votes) => {
+const countVotes = (votes, user) => {
+  var newUser = user
+  newUser = `${newUser.picture}`
+
   let arr = []
   for (key in votes) {
     if(votes.hasOwnProperty(key)) {
