@@ -56,7 +56,7 @@ io.on('connection', (socket) => {
 
   socket.emit('statusMessage', 'You have connected.');
 
-  socket.on('message', (channel, message, user, index) => {
+  socket.on('message', (channel, message, user) => {
     if (channel === 'voteCast') {
       votes[socket.id] = message;
       socket.emit('voteCount', countVotes(votes, user));
@@ -88,7 +88,8 @@ io.on('connection', (socket) => {
 
 const countVotes = (votes, user) => {
   var newUser = user
-  newUser = `${newUser.picture}`
+  {newUser ? newUser = `${newUser.picture}`: newUser = null}
+  console.log(newUser);
 
   let arr = []
   for (key in votes) {
