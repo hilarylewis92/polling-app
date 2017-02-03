@@ -60,3 +60,14 @@ describe('GET api/poll/:id', function() {
     })
   })
 });
+
+describe('undefined routes', function(){
+  it('respond with a 404', function(done){
+    chai.request(server)
+    .get('/not-real')
+    .end(function(err, res) {
+      res.should.have.status(404);
+      done()
+    })
+  })
+})
