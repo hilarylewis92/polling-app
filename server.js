@@ -14,7 +14,11 @@ app.use('/poll', express.static(path.join(__dirname, 'public/poll')));
 
 app.use('/form', express.static(path.join(__dirname, 'public')));
 
-app.post('/form', (req, res) => {
+app.get('/', function(req, res) {
+  res.redirect('/form')
+});
+
+app.post('/form', function(req, res){
   const info = req.body
   const id = md5(info)
   const poll = { id, info}
@@ -23,8 +27,8 @@ app.post('/form', (req, res) => {
   res.redirect(`/api/poll/${id}`)
 })
 
-app.get('/api/poll/:id', (req, res) => {
-  var data = app.locals.polls.find((poll) => {
+app.get('/api/poll/:id', function(req, res){
+  var data = app.locals.polls.find(function(poll){
     return poll.id === req.params.id
   })
   res.json(data)
@@ -33,9 +37,12 @@ app.get('/api/poll/:id', (req, res) => {
 const port = process.env.PORT || 3000;
 
 const server = http.createServer(app);
-server.listen(port, () => {
-  console.log(`Listening on port ${port}.`);
-});
+
+if(!module.parent){
+  server.listen(port, function() {
+    console.log(`Listening on port ${port}.`);
+  });
+}
 
 module.exports = server;
 
