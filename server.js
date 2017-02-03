@@ -89,15 +89,22 @@ io.on('connection', (socket) => {
 const countVotes = (votes, user) => {
   var newUser = user
   {newUser ? newUser = `${newUser.picture}`: newUser = null}
-  console.log(newUser);
+  // var voteObj = {
+  //   user: newUser
+  // }
+  // console.log(voteObj);
 
   let arr = []
   for (key in votes) {
     if(votes.hasOwnProperty(key)) {
       var value = votes[key]
+
       arr.push(value)
     }
   }
+  // console.log(arr);
+  // let asf = Object.assign({}, voteObj, arr)
+  // console.log(asf);
 
   let voteCount = arr.reduce((allVotes, vote) => {
   	if(vote in allVotes) {
@@ -107,7 +114,8 @@ const countVotes = (votes, user) => {
   		allVotes[vote] = 1
       }
   	return allVotes
-  },{})
+  }, {})
 
   return voteCount
+  console.log(voteCount);
 }
