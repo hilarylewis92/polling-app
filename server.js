@@ -1,22 +1,23 @@
-const http = require('http');
-const express = require('express');
-const bodyParser = require('body-parser');
-const path = require('path');
+const http = require('http')
+const express = require('express')
+const bodyParser = require('body-parser')
+const path = require('path')
 const md5 = require('md5')
+const app = express()
 
-const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }))
+const port = process.env.PORT || 3000
+const server = http.createServer(app)
 
 app.locals.polls = []
 
-app.use('/poll', express.static(path.join(__dirname, 'public/poll')));
-
-app.use('/form', express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use('/poll', express.static(path.join(__dirname, 'public/poll')))
+app.use('/form', express.static(path.join(__dirname, 'public')))
 
 app.get('/', function(req, res) {
   res.redirect('/form')
-});
+})
 
 app.post('/form', function(req, res){
   const info = req.body
@@ -34,84 +35,56 @@ app.get('/api/poll/:id', function(req, res){
   res.json(data)
 })
 
-const port = process.env.PORT || 3000;
-
-const server = http.createServer(app);
-
 if(!module.parent){
   server.listen(port, function() {
-    console.log(`Listening on port ${port}.`);
-  });
+    console.log(`Listening on port ${port}.`)
+  })
 }
 
-module.exports = server;
+module.exports = server
 
-const socketIo = require('socket.io');
-const io = socketIo(server);
-const votes = {};
-app.locals.votes = []
+const socketIo = require('socket.io')
+const io = socketIo(server)
+const votes = {}
 
 io.on('connection', (socket) => {
-  io.sockets.emit('usersConnected', io.engine.clientsCount);
+  io.sockets.emit('usersConnected', io.engine.clientsCount)
 
-  socket.emit('statusMessage', 'You have connected.');
+  socket.emit('statusMessage', 'You have connected.')
 
   socket.on('message', (channel, message, user) => {
     if (channel === 'voteCast') {
-      votes[socket.id] = message;
-      socket.emit('voteCount', countVotes(votes, user));
-
-      // assignUser(user, index-1)
-      // socket.emit('voteCount', app.locals.votes);
+      votes[socket.id] = message
+      socket.emit('voteCount', countVotes(votes))
     }
-  });
+  })
 
   function assignUser(newUser, index) {
-    let votes = app.locals.votes;
+    let votes = app.locals.votes
     votes = votes.map(function(selection) {
       return selection.filter(function(user) {
         return newUser.user_id != user.user_id
       })
     })
     votes.push(newUser.picture)
-    app.locals.votes = votes;
-    console.log(app.locals.votes);
+    app.locals.votes = votes
   }
 
     socket.on('disconnect', () => {
-      console.log('A user has disconnected.', io.engine.clientsCount);
-      delete votes[socket.id];
-      socket.emit('voteCount', countVotes(votes));
-      io.sockets.emit('usersConnected', io.engine.clientsCount);
-  });
-});
+      delete votes[socket.id]
+      socket.emit('voteCount', countVotes(votes))
+      io.sockets.emit('usersConnected', io.engine.clientsCount)
+  })
+})
 
-const countVotes = (votes, user) => {
-  let userArr = []
-  var newUser = user
-  {newUser
-    ? newUser = `${newUser.picture}`
-    : newUser = null}
-    userArr.push(newUser)
-    console.log('userArr', userArr);
-
-  // var voteObj = {
-  //   user: newUser
-  // }
-  // console.log(voteObj);
-
+const countVotes = (votes) => {
   let voteArr = []
   for (key in votes) {
     if(votes.hasOwnProperty(key)) {
       var value = votes[key]
-
       voteArr.push(value)
     }
   }
-  console.log('votearr', voteArr);
-  // console.log(voteArr);
-  // let asf = Object.assign({}, voteObj, voteArr)
-  // console.log(asf);
 
   let voteCount = voteArr.reduce((allVotes, vote) => {
   	if(vote in allVotes) {
@@ -122,6 +95,5 @@ const countVotes = (votes, user) => {
       }
   	return allVotes
   }, {})
-
   return voteCount
 }
